@@ -8,7 +8,7 @@ let particleArray = []
 let mouse = {
     x: null,
     y: null,
-    radius: 100
+    radius: 28
 }
 window.addEventListener('mousemove', function(event) {
     mouse.x = event.x + canvas.clientLeft / 2
@@ -48,7 +48,7 @@ function drawImage() {
             let forceDirectionY = dy / distance
 
             // max distance, past that the force will be 0
-            const maxDistance = 100
+            const maxDistance = 60
             let force = (maxDistance - distance) / maxDistance
             if (force < 0) force = 0
 
@@ -89,19 +89,19 @@ function drawImage() {
         }
     }
     function animate() {
-        requestAnimationFrame(animate)
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'
+        ctx.fillStyle = 'rgba(0, 0, 0, 1)'
         ctx.fillRect(0, 0, innerWidth, innerHeight)
 
         for (let i = 0; i < particleArray.length; i++) {
             particleArray[i].update()
         }
+        requestAnimationFrame(animate)
     }
     init()
     animate()
 
     window.addEventListener('resize', function() {
-        canvas.width = innerWidth
+        canvas.width = this.innerWidth
         canvas.height = this.innerHeight
         init()
     })
@@ -358,7 +358,7 @@ lJPpsxamtGS604d4pDmRbJJnOrvrVq6lRdn1x5449vjIyMqLmzccqUq666UjPQiv+Q7QXPB9PvX3
 6Vcn+gBbFxymSVzUbFT4Kkaij+4jm+YoDOSe+ISL5/PCciPC/HWlMNyt2N4ziOq3Cgq1eVdZTl9X
 +dwDSqfH8xAgAAAABJRU5ErkJggg==`
 
-window.addEventListener('load', function(event) {
+window.addEventListener('load', function() {
     
     ctx.drawImage(png, 0, 0)
     drawImage()
